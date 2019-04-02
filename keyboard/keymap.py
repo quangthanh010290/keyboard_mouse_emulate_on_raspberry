@@ -178,14 +178,14 @@ keytable = {
 
 # Map modifier keys to array element in the bit array
 modkeys = {
-   "KEY_RIGHTMETA" : 0,
-   "KEY_RIGHTALT" : 1,
-   "KEY_RIGHTSHIFT" : 2,
-   "KEY_RIGHTCTRL" : 3,
-   "KEY_LEFTMETA" : 4,
-   "KEY_LEFTALT": 5,
-   "KEY_LEFTSHIFT": 6,
-   "KEY_LEFTCTRL": 7
+    "KEY_RIGHTMETA" : 0,
+    "KEY_RIGHTALT" : 1,
+    "KEY_RIGHTSHIFT" : 2,
+    "KEY_RIGHTCTRL" : 3,
+    "KEY_LEFTMETA" : 4,
+    "KEY_LEFTALT": 5,
+    "KEY_LEFTSHIFT": 6,
+    "KEY_LEFTCTRL": 7
 }
 
 def convert(evdev_keycode):

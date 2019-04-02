@@ -35,37 +35,34 @@ class BTKbBluezProfile(dbus.service.Object):
     @dbus.service.method("org.bluez.Profile1",
                                     in_signature="", out_signature="")
     def Release(self):
-            print("Release")
-            mainloop.quit()
+        print("Release")
+        mainloop.quit()
 
     @dbus.service.method("org.bluez.Profile1",
                                     in_signature="", out_signature="")
     def Cancel(self):
-            print("Cancel")
+        print("Cancel")
 
     @dbus.service.method("org.bluez.Profile1", in_signature="oha{sv}", out_signature="")
     def NewConnection(self, path, fd, properties):
-            self.fd = fd.take()
-            print("NewConnection(%s, %d)" % (path, self.fd))
-            for key in properties.keys():
-                    if key == "Version" or key == "Features":
-                            print("  %s = 0x%04x" % (key, properties[key]))
-                    else:
-                            print("  %s = %s" % (key, properties[key]))
-            
-
+        self.fd = fd.take()
+        print("NewConnection(%s, %d)" % (path, self.fd))
+        for key in properties.keys():
+            if key == "Version" or key == "Features":
+                print("  %s = 0x%04x" % (key, properties[key]))
+            else:
+                print("  %s = %s" % (key, properties[key]))
 
     @dbus.service.method("org.bluez.Profile1", in_signature="o", out_signature="")
     def RequestDisconnection(self, path):
-            print("RequestDisconnection(%s)" % (path))
+        print("RequestDisconnection(%s)" % (path))
 
-            if (self.fd > 0):
-                    os.close(self.fd)
-                    self.fd = -1
+        if (self.fd > 0):
+            os.close(self.fd)
+            self.fd = -1
 
     def __init__(self, bus, path):
-            dbus.service.Object.__init__(self, bus, path)
-
+        dbus.service.Object.__init__(self, bus, path)
 
 #
 #create a bluetooth device to emulate a HID keyboard, 
@@ -82,19 +79,15 @@ class BTKbDevice():
     PROFILE_DBUS_PATH="/bluez/yaptb/btkb_profile" #dbus path of  the bluez profile we will create
     SDP_RECORD_PATH = sys.path[0] + "/sdp_record.xml" #file path of the sdp record to laod
     UUID="00001124-0000-1000-8000-00805f9b34fb"
-             
- 
+
     def __init__(self):
 
         print("Setting up BT device")
-
         self.init_bt_device()
         self.init_bluez_profile()
-                    
 
     #configure the bluetooth hardware device
     def init_bt_device(self):
-
 
         print("Configuring for name "+BTKbDevice.MY_DEV_NAME)
 
@@ -104,7 +97,6 @@ class BTKbDevice():
 
         #make the device discoverable
         os.system("hciconfig hcio piscan")
-
 
     #set up a bluez profile to advertise device capabilities from a loaded service record
     def init_bluez_profile(self):
@@ -131,7 +123,6 @@ class BTKbDevice():
 
         print("Profile registered ")
 
-
     #read and return an sdp record from a file
     def read_sdp_service_record(self):
 
@@ -143,8 +134,6 @@ class BTKbDevice():
             sys.exit("Could not open the sdp record. Exiting...")
 
         return fh.read()   
-
-
 
     #listen for incoming client connections
     #ideally this would be handled by the Bluez 5 profile 
@@ -197,7 +186,6 @@ class  BTKbService(dbus.service.Object):
         #start listening for connections
         self.device.listen();
 
-            
     @dbus.service.method('org.yaptb.btkbservice', in_signature='yay')
     def send_keys(self,modifier_byte,keys):
 
@@ -213,8 +201,7 @@ class  BTKbService(dbus.service.Object):
                 cmd_str+=chr(key_code)
             count+=1
 
-        self.device.send_string(cmd_str);		
-
+        self.device.send_string(cmd_str);
 
 #main routine
 if __name__ == "__main__":
@@ -225,4 +212,3 @@ if __name__ == "__main__":
     DBusGMainLoop(set_as_default=True)
     myservice = BTKbService();
     gtk.main()
-    
