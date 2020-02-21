@@ -14,7 +14,7 @@ class BtkStringClient():
 
     """simple client of the Bluetooth Keyboard Emulator
     writes a string to the BTK Keyboard
-    http://yetanotherpointlesstechblog.blogspot.com
+    https://thanhle.me/2020/02/18/make-raspberry-pi3-as-an-emulator-bluetooth-keyboard/
     """
 
     #constants
@@ -50,16 +50,15 @@ class BtkStringClient():
                 " ": "KEY_SPACE"
             }
 
-            #connect with the Bluetooth keyboard server    
-            print "setting up DBus Client"  
+            #connect with the Bluetooth keyboard server
+            print "setting up DBus Client"
 
             self.bus = dbus.SystemBus()
             self.btkservice = self.bus.get_object('org.yaptb.btkbservice','/org/yaptb/btkbservice')
-            self.iface = dbus.Interface(self.btkservice,'org.yaptb.btkbservice')    
+            self.iface = dbus.Interface(self.btkservice,'org.yaptb.btkbservice')
 
         def send_key_state(self):
-        
-            """sends a single frame of the current key state to the emulator server"""    
+            """sends a single frame of the current key state to the emulator server"""
 
             bin_str=""
             element=self.state[2]
@@ -69,14 +68,14 @@ class BtkStringClient():
 
         def send_key_down(self, scancode):
 
-            """sends a key down event to the server"""    
+            """sends a key down event to the server"""
 
             self.state[4]=scancode
             self.send_key_state()
 
         def send_key_up(self):
 
-            """sends a key up event to the server"""    
+            """sends a key up event to the server"""
 
             self.state[4]=0
             self.send_key_state()
