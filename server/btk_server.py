@@ -183,7 +183,7 @@ class  BTKbService(dbus.service.Object):
         self.device= BTKbDevice()
 
         #start listening for connections
-        self.device.listen();cinterrupt
+        self.device.listen()
 
         cmd_str=""
         cmd_str+=chr(0xA1)
