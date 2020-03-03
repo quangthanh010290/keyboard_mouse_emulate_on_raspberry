@@ -4,5 +4,4 @@ sudo apt-get install python-dbus  -y
 sudo apt-get install python-gtk2 -y
 sudo apt-get install git-core -y
 sudo apt-get install tmux -y
-cd dbus
-sudo cp org.yaptb.btkbservice.conf /etc/dbus-1/system.d
+sudo cp dbus/org.yaptb.btkbservice.conf /etc/dbus-1/system.d
