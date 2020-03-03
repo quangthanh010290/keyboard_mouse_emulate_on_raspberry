@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #
 # YAPTB Bluetooth keyboard emulation service
-# keyboard copy client. 
+# keyboard copy client.
 # Reads local key events and forwards them to the btk_server DBUS service
 #
 # Adapted from www.linuxuser.co.uk/tutorials/emulate-a-bluetooth-keyboard-with-the-raspberry-pi
@@ -86,7 +86,7 @@ class Keyboard():
                 elif self.state[i] == 0x00 and event.value == 1:
                     #if the current space if empty and the key is being pressed
                     self.state[i]=hex_key
-                    break;
+                    break
 
     #poll for keyboard events
     def event_loop(self):
