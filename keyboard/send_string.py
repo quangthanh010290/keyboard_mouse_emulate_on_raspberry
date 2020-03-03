@@ -12,10 +12,10 @@ import keymap
 
 class BtkStringClient():
 
-	"""simple client of the Bluetooth Keyboard Emulator
-	writes a string to the BTK Keyboard
-	http://yetanotherpointlesstechblog.blogspot.com
-	"""
+    """simple client of the Bluetooth Keyboard Emulator
+    writes a string to the BTK Keyboard
+    https://thanhle.me/2020/02/18/make-raspberry-pi3-as-an-emulator-bluetooth-keyboard/
+    """
 
 	#constants
 	KEY_DOWN_TIME=0.01
