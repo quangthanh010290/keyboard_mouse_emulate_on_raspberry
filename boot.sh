@@ -9,8 +9,8 @@ sudo hciconfig hcio up
 #Get current Path
 export C_PATH=$(pwd)
 #Create Tmux session
-tmux has-session -t  mlabviet
-if [ $? != 0 ]; then
+tmux a
+if [ $? = "no sessions" ]; then
     tmux new-session -s mlabviet -n os -d
     tmux split-window -h -t mlabviet
     tmux split-window -v -t mlabviet:os.0
