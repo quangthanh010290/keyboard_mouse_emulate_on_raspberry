@@ -1,15 +1,15 @@
 #
-# www.linuxuser.co.uk/tutorials/emulate-a-bluetooth-keyboard-with-the-raspberry-pi
+# https://thanhle.me/make-raspberry-pi3-as-an-emulator-bluetooth-keyboard/
 #
 #
 #
 # Convert value returned from Linux event device ("evdev") to a HID code. This
 # is reverse of what's actually hardcoded in the kernel.
 #
-# Lubomir Rintel <lkundrak@v3.sk>
+# Thanh Le <quangthanh010290@gmail.com>
 # License: GPL
 #
-# Ported to a Python module by Liam Fraser.
+# Ported to a Python module by Thanh Le
 #
 
 keytable = {
