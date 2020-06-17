@@ -15,7 +15,7 @@ if [ $? != 0 ] ; then
     tmux split-window -h -t thanhle
     tmux split-window -v -t thanhle:os.0
     tmux split-window -v -t thanhle:os.1
-    tmux send-keys -t thanhle:os.0 'cd $C_PATH && sudo /usr/sbin/bluetoothd --nodetach --debug -p time ' C-m
+    tmux send-keys -t thanhle:os.0 'cd $C_PATH && sudo /usr/sbin/bluetoothd --compat --nodetach --debug -p time ' C-m
     tmux send-keys -t thanhle:os.1 'cd $C_PATH/server && sudo python btk_server.py ' C-m
     tmux send-keys -t thanhle:os.2 'cd $C_PATH && sudo /usr/bin/bluetoothctl' C-m
     tmux send-keys -t thanhle:os.3 'cd $C_PATH/keyboard/ && sleep 5 && sudo python kb_client.py' C-m
