@@ -7,3 +7,5 @@ sudo apt-get install python-gtk2 -y
 sudo apt-get install git-core -y
 sudo apt-get install tmux -y
 sudo cp dbus/org.yaptb.btkbservice.conf /etc/dbus-1/system.d
+sudo cp /lib/systemd/system/bluetooth.service ./bluetooth.service.bk
+sudo cp bluetooth.service /lib/systemd/system/bluetooth.service
