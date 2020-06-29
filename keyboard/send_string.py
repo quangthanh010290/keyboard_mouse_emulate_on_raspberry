@@ -13,7 +13,7 @@ import keymap
 class BtkStringClient():
 	# constants
 	KEY_DOWN_TIME = 0.01
-	KEY_DELAY = 0.1
+	KEY_DELAY = 0.01
 
 	def __init__(self):
 		# the structure for a bt keyboard input report (size is 10 bytes)
