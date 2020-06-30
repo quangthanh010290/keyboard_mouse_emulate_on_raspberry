@@ -92,10 +92,10 @@ class BTKbDevice():
 		print("Configuring for name " + BTKbDevice.MY_DEV_NAME)
 		# set the device class to a keybord and set the name
 		os.system("hciconfig hci0 up")
-		os.system("hciconfig hcio class 0x002540")
-		os.system("hciconfig hcio name " + BTKbDevice.MY_DEV_NAME)
+		os.system("hciconfig hci0 class 0x002540")
+		os.system("hciconfig hci0 name " + BTKbDevice.MY_DEV_NAME)
 		# make the device discoverable
-		os.system("hciconfig hcio piscan")
+		os.system("hciconfig hci0 piscan")
 
 	# set up a bluez profile to advertise device capabilities from a loaded service record
 	def init_bluez_profile(self):
@@ -188,6 +188,7 @@ class BTKbService(dbus.service.Object):
 			if(count < 6):
 				cmd_str += chr(key_code)
 			count += 1
+		print("key msg: " + cmd_str)
 		self.device.send_string(cmd_str)
 
 	@dbus.service.method('org.yaptb.btkbservice', in_signature='yay')

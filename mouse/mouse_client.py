@@ -151,11 +151,17 @@ class MouseInput(InputDevice):
         self.z = 0
         self.change = False
         self.last = 0
+        self.bus = dbus.SystemBus()
+        self.btkservice = self.bus.get_object(
+            'org.yaptb.btkbservice', '/org/yaptb/btkbservice')
+        self.iface = dbus.Interface(self.btkservice, 'org.yaptb.btkbservice')
+        self.mouse_delay = 20 / 1000
+        self.mouse_speed = 1
 
     def send_current(self, ir):
         try:
-            print("send")
-            self.iface.send(0, bytes(ir))
+            print("send_mouse")
+            self.iface.send_mouse(0, bytes(ir))
         except OSError as err:
             error(err)
     def change_state(self, event):
@@ -173,7 +179,7 @@ class MouseInput(InputDevice):
             self.y = 0
             self.z = 0
             self.change = False
-            BluetoothDevice.send_current(self.state)
+            self.send_current(self.state)
         if event.type == ecodes.EV_KEY:
             debug("Key event %s %d", ecodes.BTN[event.code], event.value)
             self.change = True
@@ -190,7 +196,8 @@ class MouseInput(InputDevice):
                 self.y += event.value
             if event.code == 8:
                 self.z += event.value
-
+    def get_info(self):
+        print("hello")
     def set_leds(self, ledvalue):
         pass
 
@@ -214,22 +221,28 @@ if __name__ == "__main__":
     z = 0
     change = False
     last = 0
-    bus = dbus.SystemBus()
-    btkservice = bus.get_object(
-        'org.yaptb.btkbservice', '/org/yaptb/btkbservice')
-    iface = bus.Interface(btkservice, 'org.yaptb.btkbservice')
-    mouse_delay = 20 / 1000
-    mouse_speed = 1
-    context = pyudev.Context()
-    devs = context.list_devices(subsystem="input")
-    monitor = pyudev.Monitor.from_netlink(context)
-    monitor.filter_by(subsystem='input')
-    monitor.start()
-    for dev in [*devs]:
-        if dev.device_node == None or not re.match(".*/event\\d+", dev.device_node):
-            continue
-        try:
-            if "ID_INPUT_MOUSE" in dev.properties:
 
-        except OSError:
-            error("Failed to connect to %s", dev.device_node)
+    # context = pyudev.Context()
+    # devs = context.list_devices(subsystem="input")
+    # monitor = pyudev.Monitor.from_netlink(context)
+    # monitor.filter_by(subsystem='input')
+    # monitor.start()
+    # for dev in [*devs]:
+    #     if dev.device_node == None or not re.match(".*/event\\d+", dev.device_node):
+    #         continue
+    #     try:
+    #         if "ID_INPUT_MOUSE" in dev.properties:
+    #             print("Mouse detected: " + dev.device_node)
+    #     except OSError:
+    #         error("Failed to connect to %s", dev.device_node)
+    InputDevice.init()
+    while True:
+        desctiptors = [*InputDevice.inputs, InputDevice.monitor]
+        r = select(desctiptors, [], [])
+        for i in InputDevice.inputs:
+            try:
+                for event in i.device.read():
+                    print(event)
+                    i.change_state(event)
+            except OSError as err:
+                warning(err)
