@@ -199,9 +199,12 @@ class BTKbService(dbus.service.Object):
 # main routine
 if __name__ == "__main__":
 	# we an only run as root
-	if not os.geteuid() == 0:
-		sys.exit("Only root can run this script")
+	try:
+		if not os.geteuid() == 0:
+			sys.exit("Only root can run this script")
 
-	DBusGMainLoop(set_as_default=True)
-	myservice = BTKbService()
-	gtk.main()
+		DBusGMainLoop(set_as_default=True)
+		myservice = BTKbService()
+		gtk.main()
+	except KeyboardInterrupt:
+		sys.exit()
