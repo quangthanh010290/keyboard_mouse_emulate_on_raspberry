@@ -14,6 +14,5 @@ if [ $? != 0 ] ; then
     tmux new-session -s thanhle -n os -d
     tmux split-window -h -t thanhle
     tmux split-window -h -t thanhle
-    tmux send-keys -t 0 'cd $C_PATH/server && sudo python btk_server.py ' C-m
-    tmux send-keys -t 1 'cd $C_PATH/keyboard/ && sleep 5 && sudo python kb_client.py' C-m
+    tmux send-keys -t 0 'cd $C_PATH/server && sudo ./btk_server.py ' C-m
 fi
