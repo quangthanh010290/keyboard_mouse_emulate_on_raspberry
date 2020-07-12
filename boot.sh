@@ -1,9 +1,7 @@
 #Stop the background process
-sudo systemctl daemon-reload
 sudo hciconfig hci0 down
-sudo /etc/init.d/bluetooth stop
-sudo systemctl stop bluetooth
-sudo hciconfig hci0 up
+sudo systemctl daemon-reload
+sudo /etc/init.d/bluetooth start
 # Update  mac address
 ./updateMac.sh
 #Update Name

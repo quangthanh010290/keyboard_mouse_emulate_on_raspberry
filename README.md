@@ -1,8 +1,6 @@
-https://thanhle.me/make-raspberry-pi3-as-an-emulator-bluetooth-keyboard/
-
 # Step 1: Setup 
  sudo ./setup.sh
 # Step 2: Run
 sudo ./boot.sh
 # Video Demo
- [![ScreenShot](https://i0.wp.com/thanhle.me/wp-content/uploads/2020/02/bluetooth_mouse_emulate_on_ra%CC%81pberry.jpg)](https://youtu.be/fFpIvjS4AXs)
+ [![ScreenShot](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](https://www.youtube.com/watch?v=fFpIvjS4AXs)
