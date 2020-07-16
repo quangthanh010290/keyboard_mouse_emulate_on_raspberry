@@ -1,6 +1,16 @@
+[![Build Status](https://travis-ci.com/quangthanh010290/keyboard_mouse_emulate_on_raspberry.svg?branch=master)](https://travis-ci.com/quangthanh010290/keyboard_mouse_emulate_on_raspberry)
+
 # Step 1: Setup 
  sudo ./setup.sh
-# Step 2: Run
+# Step 2: Run the Server
 sudo ./boot.sh
+# Step 3.1: Run Keyboard Client (using physical keyboard)
+./keyboard/kb_client.py
+# Step 3.2: Run Keyboard Client (no need physical keyboard, send string through dbus)
+./keyboard/send_string.py "hello client, I'm a keyboard"
+# Step 3.3: Run mouse client (using physical moude)
+./mouse/mouse_client.py
+# Step 3.4: Run Mouse client (no need physical mouse, string mouse data through dbus)
+./mouse/mouse_emulate.py 0 10 0 0
 # Video Demo
- [![ScreenShot](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](https://www.youtube.com/watch?v=fFpIvjS4AXs)
+ [![ScreenShot](https://i0.wp.com/thanhle.me/wp-content/uploads/2020/02/bluetooth_mouse_emulate_on_ra%CC%81pberry.jpg)](https://www.youtube.com/watch?v=fFpIvjS4AXs)
