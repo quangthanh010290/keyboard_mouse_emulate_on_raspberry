@@ -33,6 +33,4 @@ sudo ./boot.sh
 
  [![ScreenShot](https://i0.wp.com/thanhle.me/wp-content/uploads/2020/02/bluetooth_mouse_emulate_on_ra%CC%81pberry.jpg)](https://www.youtube.com/watch?v=fFpIvjS4AXs)
  
- <a href="http://www.youtube.com/watch?feature=player_embedded&v=fFpIvjS4AXs
-" target="blank"><img src="http://img.youtube.com/vi/fFpIvjS4AXs/0.jpg" 
-alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+ <a href="http://www.youtube.com/watch?feature=player_embedded&v=fFpIvjS4AXs" target="blank"><img src="http://img.youtube.com/vi/fFpIvjS4AXs/0.jpg" alt="IMAGE ALT TEXT HERE" width="640" height="480" border="10" /></a>
