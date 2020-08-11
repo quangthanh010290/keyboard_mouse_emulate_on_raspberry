@@ -32,7 +32,7 @@ sudo ./boot.sh
 ./keyboard/send_string.py "hello client, I'm a keyboard"
 ```
 
-## Step 3.3: Run mouse client (using physical moude)
+## Step 3.3: Run mouse client (using physical mouse)
 
 - Need a physical mouse connected to raspberry PI board
 ```
