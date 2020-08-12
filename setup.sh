@@ -1,3 +1,4 @@
+
 sudo apt-get install bluez bluez-tools
 sudo apt-get install bluez-firmware python-bluez python-dev python-pip -y
 sudo pip install evdev
