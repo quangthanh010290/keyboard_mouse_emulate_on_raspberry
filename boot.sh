@@ -5,7 +5,7 @@ sudo /etc/init.d/bluetooth start
 # Update  mac address
 ./updateMac.sh
 #Update Name
-./updateName.sh ThanhLe_Keyboard
+./updateName.sh ThanhLe_Keyboard_Mouse
 #Get current Path
 export C_PATH=$(pwd)
 #Create Tmux session

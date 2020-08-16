@@ -23,14 +23,13 @@ logging.basicConfig(level=logging.DEBUG)
 
 class BTKbDevice():
     # change these constants
-    MY_ADDRESS = "B8:27:EB:B9:FE:EC"
+    MY_ADDRESS = "E4:A7:A0:E0:0E:97"
     MY_DEV_NAME = "ThanhLe_Keyboard_Mouse"
 
     # define some constants
     P_CTRL = 17  # Service port - must match port configured in SDP record
     P_INTR = 19  # Service port - must match port configured in SDP record#Interrrupt port
     # dbus path of the bluez profile we will create
-    PROFILE_DBUS_PATH = "/bluez/thanhle/btkb_profile"
     # file path of the sdp record to load
     SDP_RECORD_PATH = sys.path[0] + "/sdp_record.xml"
     UUID = "00001124-0000-1000-8000-00805f9b34fb"
