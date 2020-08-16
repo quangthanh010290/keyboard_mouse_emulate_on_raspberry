@@ -54,4 +54,4 @@ sudo ./boot.sh
  [![ScreenShot](https://i0.wp.com/thanhle.me/wp-content/uploads/2020/02/bluetooth_mouse_emulate_on_ra%CC%81pberry.jpg)](https://www.youtube.com/watch?v=fFpIvjS4AXs)
 
 ## Mouse setup demo (ongoing)
-[Emulate Bluetooth mouse with Raspberry Pi]https://thanhle.me/emulate-bluetooth-mouse-with-raspberry-pi/
+[Emulate Bluetooth mouse with Raspberry Pi](https://thanhle.me/emulate-bluetooth-mouse-with-raspberry-pi/)
