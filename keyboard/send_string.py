@@ -4,7 +4,6 @@ import sys  # used to exit the script
 import dbus
 import dbus.service
 import dbus.mainloop.glib
-import RPi.GPIO as GPIO
 import time
 # import thread
 import keymap
