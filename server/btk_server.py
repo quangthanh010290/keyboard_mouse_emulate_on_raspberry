@@ -23,8 +23,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 class BTKbDevice():
     # change these constants
-    MY_ADDRESS = "E4:A7:A0:E0:0E:97"
-    MY_DEV_NAME = "ThanhLe_Keyboard_Mouse"
+    MY_ADDRESS = "DC:A6:32:09:5A:A1"
+    MY_DEV_NAME = "Homestead-Keyboard"
 
     # define some constants
     P_CTRL = 17  # Service port - must match port configured in SDP record
