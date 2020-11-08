@@ -5,6 +5,11 @@ My fork of this project to add a keyboard and mouse emulator to a Raspberry Pi. 
 3. Inputting a string (passed as argument 2 to the script).
 4. Simulating enter to execute.
 
+
+```
+./keyboard/send_ios_command.py 010203 "hello client, this is a shortcut"
+```
+
 Thanh Le's original instructions follow.
 
 ===
