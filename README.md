@@ -1,3 +1,14 @@
+My fork of this project to add a keyboard and mouse emulator to a Raspberry Pi. This fork includes a script designed to open an app or run a shortcut when the keyboard is connected to an iOS device by:
+
+1. Inputting the device passcode (passed as argument 1 to the script).
+2. Simulating command+space to open the search window.
+3. Inputting a string (passed as argument 2 to the script).
+4. Simulating enter to execute.
+
+Thanh Le's original instructions follow.
+
+===
+
 [![Build Status](https://travis-ci.com/quangthanh010290/keyboard_mouse_emulate_on_raspberry.svg?branch=master)](https://travis-ci.com/quangthanh010290/keyboard_mouse_emulate_on_raspberry)
 
 # Make things work first 
