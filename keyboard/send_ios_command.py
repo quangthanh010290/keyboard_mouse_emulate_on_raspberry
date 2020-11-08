@@ -61,13 +61,28 @@ class BtkStringClient():
         self.state[4] = 0
         self.send_key_state()
 
-    def send_string(self, string_to_send):
+    def send_string(self, passcode, string_to_send):
+        """inputs passcode"""
+        for c in passcode:
+            cu = c.upper()
+            if(cu in self.scancodes):
+                scantablekey = self.scancodes[cu]
+            else:
+                scantablekey = "KEY_"+c.upper()
+            print(scantablekey)
+            scancode = keymap.keytable[scantablekey]
+            self.send_key_down(scancode)
+            time.sleep(BtkStringClient.KEY_DOWN_TIME)
+            self.send_key_up()
+            time.sleep(BtkStringClient.KEY_DELAY)
+        time.sleep(2.5)
         """opens command window"""
         self.send_key_down(231)
         self.send_key_down(44)
         time.sleep(BtkStringClient.KEY_DOWN_TIME)
         self.send_key_up()
         time.sleep(0.5)
+        """opens string to send and hits enter"""
         for c in string_to_send:
             cu = c.upper()
             if(cu in self.scancodes):
@@ -85,11 +100,12 @@ class BtkStringClient():
         self.send_key_up()
 
 if __name__ == "__main__":
-    if(len(sys.argv) < 2):
-        print("Usage: send_string <string to send ")
+    if(len(sys.argv) < 3):
+        print("Usage: send_command <iOS passcode> <string to send>")
         exit()
     dc = BtkStringClient()
-    string_to_send = sys.argv[1]
+    passcode = sys.argv[1]
+    string_to_send = sys.argv[2]
     print("Sending " + string_to_send)
-    dc.send_string(string_to_send)
+    dc.send_string(passcode,string_to_send)
     print("Done.")
