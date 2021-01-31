@@ -23,7 +23,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 class BTKbDevice():
     # change these constants
-    MY_ADDRESS = "DC:A6:32:09:5A:A1"
+    MY_ADDRESS = "00:1A:7D:DA:71:13"
     MY_DEV_NAME = "Homestead-Keyboard"
 
     # define some constants
