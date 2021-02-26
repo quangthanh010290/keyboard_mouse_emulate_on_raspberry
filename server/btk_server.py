@@ -28,7 +28,7 @@ class BTKbDevice():
 
     # define some constants
     P_CTRL = 17  # Service port - must match port configured in SDP record
-    P_INTR = 19  # Service port - must match port configured in SDP record#Interrrupt port
+    P_INTR = 19  # Interrupt port - must match port configured in SDP record
     # dbus path of the bluez profile we will create
     # file path of the sdp record to load
     SDP_RECORD_PATH = sys.path[0] + "/sdp_record.xml"
