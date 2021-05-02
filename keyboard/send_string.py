@@ -35,7 +35,28 @@ class BtkStringClient():
             0x00,
             0x00,
             0x00]
-        self.scancodes = {" ": "KEY_SPACE"}
+        self.scancodes = {
+            "-": "KEY_MINUS",
+            "=": "KEY_EQUAL",
+            ";": "KEY_SEMICOLON",
+            "'": "KEY_APOSTROPHE",
+            "`": "KEY_GRAVE",
+            "\\": "KEY_BACKSLASH",
+            ",": "KEY_COMMA",
+            ".": "KEY_DOT",
+            "/": "KEY_SLASH",
+            "_": "key_minus",
+            "+": "key_equal",
+            ":": "key_semicolon",
+            "\"": "key_apostrophe",
+            "~": "key_grave",
+            "|": "key_backslash",
+            "<": "key_comma",
+            ">": "key_dot",
+            "?": "key_slash",
+            " ": "KEY_SPACE",
+        }
+
         # connect with the Bluetooth keyboard server
         print("setting up DBus Client")
         self.bus = dbus.SystemBus()
@@ -51,8 +72,9 @@ class BtkStringClient():
             bin_str += str(bit)
         self.iface.send_keys(int(bin_str, 2), self.state[4:10])
 
-    def send_key_down(self, scancode):
+    def send_key_down(self, scancode, modifiers):
         """sends a key down event to the server"""
+        self.state[2] = modifiers
         self.state[4] = scancode
         self.send_key_state()
 
@@ -64,13 +86,19 @@ class BtkStringClient():
     def send_string(self, string_to_send):
         for c in string_to_send:
             cu = c.upper()
-            if(cu in self.scancodes):
+            modifiers = [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+            if cu in self.scancodes:
                 scantablekey = self.scancodes[cu]
+                if scantablekey.islower():
+                    modifiers = [ 0, 0, 0, 0, 0, 0, 1, 0 ]
+                    scantablekey = scantablekey.upper()
             else:
-                scantablekey = "KEY_"+c.upper()
-            print(scantablekey)
+                if c.isupper():
+                    modifiers = [ 0, 0, 0, 0, 0, 0, 1, 0 ]
+                scantablekey = "KEY_" + cu
+
             scancode = keymap.keytable[scantablekey]
-            self.send_key_down(scancode)
+            self.send_key_down(scancode, modifiers)
             time.sleep(BtkStringClient.KEY_DOWN_TIME)
             self.send_key_up()
             time.sleep(BtkStringClient.KEY_DELAY)
@@ -78,7 +106,7 @@ class BtkStringClient():
 
 if __name__ == "__main__":
     if(len(sys.argv) < 2):
-        print("Usage: send_string <string to send ")
+        print("Usage: send_string <string to send>")
         exit()
     dc = BtkStringClient()
     string_to_send = sys.argv[1]
