@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# thanhle Bluetooth keyboard/Mouse emulator DBUS Service
+# Bluetooth keyboard/Mouse emulator DBUS Service
 #
 
 from __future__ import absolute_import, print_function
