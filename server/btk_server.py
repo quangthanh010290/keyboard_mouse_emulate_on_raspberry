@@ -17,13 +17,15 @@ from gi.repository import GLib
 from dbus.mainloop.glib import DBusGMainLoop
 import logging
 from logging import debug, info, warning, error
+import bluetooth
+from bluetooth import *
 
 logging.basicConfig(level=logging.DEBUG)
 
 
 class BTKbDevice():
     # change these constants
-    MY_ADDRESS = "E4:A7:A0:E0:0E:97"
+    MY_ADDRESS = bluetooth.read_local_bdaddr()[0]
     MY_DEV_NAME = "ThanhLe_Keyboard_Mouse"
 
     # define some constants
@@ -44,7 +46,6 @@ class BTKbDevice():
         print("3. Configuring Device name " + BTKbDevice.MY_DEV_NAME)
         # set the device class to a keybord and set the name
         os.system("hciconfig hci0 up")
-        os.system("hciconfig hci0 class 0x0025C0")
         os.system("hciconfig hci0 name " + BTKbDevice.MY_DEV_NAME)
         # make the device discoverable
         os.system("hciconfig hci0 piscan")
@@ -64,6 +65,7 @@ class BTKbDevice():
             "org.bluez", "/org/bluez"), "org.bluez.ProfileManager1")
         manager.RegisterProfile("/org/bluez/hci0", BTKbDevice.UUID, opts)
         print("6. Profile registered ")
+        os.system("hciconfig hci0 class 0x0025C0")
 
     # read and return an sdp record from a file
     def read_sdp_service_record(self):
