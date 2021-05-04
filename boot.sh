@@ -23,7 +23,7 @@ STATUS=$(tmux ls 2>&1)
 
 echo "STATUS: ${STATUS}"
 
-if [ "${STATUS}" = "no server running on /tmp/tmux-1000/default" ] ; then
+if [ "${STATUS}" = "no server running on /tmp/tmux-1000/default" ] || [ "${STATUS}" = "error connecting to /tmp/tmux-1000/default (No such file or directory)" ] || [ "${STATUS}" = "error connecting to /tmp//tmux-1000/default (No such file or directory)" ] ; then
     echo "no tmux instance"
     setupApplication
 else
