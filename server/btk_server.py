@@ -25,7 +25,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 class BTKbDevice():
     # change these constants
-    MY_ADDRESS = bluetooth.read_local_bdaddr()[0]
+    MY_ADDRESS = "B8:27:EB:C5:B3:27"
     MY_DEV_NAME = "ThanhLe_Keyboard_Mouse"
 
     # define some constants

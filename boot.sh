@@ -19,17 +19,12 @@ setupApplication()
     tmux send-keys -t thanhle:pi_bluetooth.2 'cd $C_PATH/keyboard  && reset ' C-m
 }
 
-STATUS=$(tmux ls 2>&1)
-
-echo "STATUS: ${STATUS}"
-
-if [ "${STATUS}" = "no server running on /tmp/tmux-1000/default" ] || [ "${STATUS}" = "error connecting to /tmp/tmux-1000/default (No such file or directory)" ] || [ "${STATUS}" = "error connecting to /tmp//tmux-1000/default (No such file or directory)" ] ; then
-    echo "no tmux instance"
-    setupApplication
-else
-    STATUS=$(tmux has-session -t  thanhle 2>&1)
-    if [ "${STATUS}" = "can't find session thanhle" ] ; then
-        echo "no session thanhle"
-        setupApplication
-    fi
-fi
+[ ! -z "$(tmux has-session -t thanhle 2>&1)" ] && tmux new-session -s thanhle -n app -d
+[ ! -z "$(tmux has-session -t thanhle:app 2>&1)" ] && {
+    tmux new-window -t thanhle -n app
+}
+[ ! -z "$(tmux has-session -t thanhle:app.1 2>&1)" ] && tmux split-window -t thanhle:app -h
+[ ! -z "$(tmux has-session -t thanhle:app.2 2>&1)" ] && tmux split-window -t thanhle:app.1 -v
+tmux send-keys -t thanhle:app.0 'cd $C_PATH/server && sudo ./btk_server.py' C-m
+tmux send-keys -t thanhle:app.1 'cd $C_PATH/mouse  && reset' C-m
+tmux send-keys -t thanhle:app.2 'cd $C_PATH/keyboard  && reset' C-m
