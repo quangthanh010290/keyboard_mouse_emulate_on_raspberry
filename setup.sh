@@ -12,5 +12,5 @@ sudo cp bluetooth.service /lib/systemd/system/bluetooth.service
 sudo systemctl daemon-reload
 sudo /etc/init.d/bluetooth start
 sudo apt-get install python3-gi -y
-sudo apt install python3-pip -y
+sudo apt install python3-pip libbluetooth-dev -y
 sudo pip3 install PyBluez
