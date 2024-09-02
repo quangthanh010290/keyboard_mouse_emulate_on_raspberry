@@ -1,16 +1,14 @@
-#! /bin/bash
+#!/bin/bash
 sudo apt-get update -y
-sudo apt-get install bluez bluez-tools -y
-sudo apt-get install bluez-firmware python-bluez python-dev python-pip -y
-sudo pip install evdev
-sudo apt install git python python3 python-dev python3-dev python3-dbus python3-pyudev python3-evdev -y
-sudo apt-get install python-dbus  -y
-sudo apt-get install tmux -y
+sudo apt-get install -y --ignore-missing git tmux bluez bluez-tools bluez-firmware
+sudo apt-get install -y --ignore-missing python3 python3-dev python3-pip python3-dbus python3-pyudev python3-evdev python3-gi
+
+sudo apt-get install -y libbluetooth-dev
+sudo PIP_BREAK_SYSTEM_PACKAGES=1 pip3 install git+https://github.com/pybluez/pybluez.git#egg=pybluez
+
 sudo cp dbus/org.thanhle.btkbservice.conf /etc/dbus-1/system.d
-sudo cp /lib/systemd/system/bluetooth.service ./bluetooth.service.bk
-sudo cp bluetooth.service /lib/systemd/system/bluetooth.service
+sudo systemctl restart dbus.service
+
+sudo sed -i '/^ExecStart=/ s/$/ --noplugin=input/' /lib/systemd/system/bluetooth.service
 sudo systemctl daemon-reload
-sudo /etc/init.d/bluetooth start
-sudo apt-get install python3-gi -y
-sudo apt install python3-pip -y
-sudo pip3 install PyBluez
+sudo systemctl restart bluetooth.service
